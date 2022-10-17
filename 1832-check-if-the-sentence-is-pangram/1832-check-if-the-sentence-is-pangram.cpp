@@ -7,12 +7,9 @@ public:
         for(int i=0; i<sentence.size(); i++)
             m[sentence[i]]++;
         
-        for(char ch='a'; ch<='z'; ch++)
-        {
-            if(m.find(ch)==m.end())
-                return false; 
-        }
+        if(m.size()==26)
+            return true;
         
-        return true;
+        return false;
     }
 };
