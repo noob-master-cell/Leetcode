@@ -9,29 +9,61 @@ class Solution
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
-    {
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
+    {                         
+    //                          SET SOLUTION
+        set<pair<int, int>> s;
         vector<int> dist(V, 1e9);
-        q.push({0, S});
+        
+        s.insert({0, S});
         dist[S]=0;
         
-        while(!q.empty())
+        while(!s.empty())
         {
-            int node = q.top().second;
-            int dis = q.top().first;
-            q.pop();
+            auto it = *(s.begin());
+            int node = it.second;
+            int dis = it.first;
+            s.erase(it);
+            
             for(auto it : adj[node])
             {
                 int adjNode = it[0];
                 int weight = it[1];
                 if(dis + weight < dist[adjNode])
                 {
+                    if(dist[adjNode] != 1e9)
+                        s.erase({dist[adjNode], adjNode});
                     dist[adjNode] = dis + weight;
-                    q.push({dist[adjNode], adjNode});
+                    s.insert({dist[adjNode], adjNode});
                 }
             }
         }
         return dist;
+        
+        
+        
+    //                          PRIORITY QUEUE SOLUTION
+    //     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
+    //     vector<int> dist(V, 1e9);
+    //     q.push({0, S});
+    //     dist[S]=0;
+        
+    //     while(!q.empty())
+    //     {
+    //         int node = q.top().second;
+    //         int dis = q.top().first;
+    //         q.pop();
+    //         for(auto it : adj[node])
+    //         {
+    //             int adjNode = it[0];
+    //             int weight = it[1];
+    //             if(dis + weight < dist[adjNode])
+    //             {
+    //                 dist[adjNode] = dis + weight;
+    //                 q.push({dist[adjNode], adjNode});
+    //             }
+    //         }
+    //     }
+    //     return dist;
     }
 };
 
