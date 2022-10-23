@@ -55,9 +55,6 @@ public:
                 node = i;
             }
         }
-        return node;
-        
-        
-        
+        return node;   
     }
 };
