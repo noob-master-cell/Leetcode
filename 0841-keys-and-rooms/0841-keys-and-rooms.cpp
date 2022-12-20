@@ -11,15 +11,15 @@ public:
         {
             int val= q.front();
             q.pop();
-            for(auto i:rooms[val])
+            for(auto it : rooms[val])
             {
-                if(!vis.count(i))
+                if(!vis.count(it))
                 {
-                    q.push(i);
-                    vis.insert(i);
+                    q.push(it);
+                    vis.insert(it);
                 }
             }
         }
-        return (vis.size()==rooms.size());
+        return vis.size() == rooms.size();
     }
 };
