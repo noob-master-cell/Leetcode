@@ -9,9 +9,6 @@ public:
                 return false;
             
             index = max(index, nums[i]+i);
-            
-            if(index >= nums.size() - 1)
-            return true;
         }
         
         return true;
